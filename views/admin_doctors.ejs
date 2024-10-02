@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Doctors Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        function confirmDelete(event) {
+            if (!confirm('Are you sure you want to delete this doctor?')) {
+                event.preventDefault(); // Cancel the form submission
+            }
+        }
+    </script>
+</head>
+<style>
+table.scrolldown {
+    width:700px;
+
+    /* border-collapse: collapse; */
+    border-spacing: 5;
+    border: 1px groove black;
+}
+
+/* To display the block as level element */
+table.scrolldown tbody,
+table.scrolldown thead {
+    display: block;
+}
+
+thead tr th {
+    height: 40px;
+    line-height: 10px;
+}
+
+table.scrolldown tbody {
+
+    /* Set the height of table body */
+    height:130px;
+
+    /* Set vertical scroll */
+    overflow-y: auto;
+
+    /* Hide the horizontal scroll */
+    overflow-x: hidden;
+}
+
+ /* tbody {
+    border-top: 1px groove black;
+} */
+
+tbody td,
+thead th {
+    width: 300px;
+    /* border-right: 1px groove black; */
+    text-align: center;
+
+}
+
+td {
+    text-align: center;
+} 
+</style>
+
+<body>
+    <div class="container mt-5">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Healthcare System</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/appointments">Back</a>
+                    </li> 
+                
+                </ul>
+            </div>
+        </nav>
+        <br/>
+        <center>
+        <h1>Doctor Details</h1>
+    </center>
+
+    <hr>
+    <div class="container" style="inline-size: 300px; margin-top: 80px;border: 1px groove;padding: 50px;height: 550px;width: 800px;">
+
+        <form action="/admin/doctors/add" method="POST">
+            <div class="form-group">
+                <label for="name">Doctor Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="specialization">Specialization</label>
+                <input type="text" class="form-control" id="specialization" name="specialization" required>
+            </div>
+            <center><button type="submit" class="btn btn-primary">Add Doctor</button></center>
+        </form>
+        <center><h2 class="mt-5">Doctors List</h2></center>
+        <hr>
+        <div class="table-container">
+        <table class="scrolldown table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Specialization</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% doctors.forEach(doctor => { %>
+                    <tr>
+                        <td><%= doctor.id %></td>
+                        <td><%= doctor.name %></td>
+                        <td><%= doctor.specialization %></td>
+                        <td>
+                            <form action="/admin/doctors/delete/<%= doctor.id %>" method="POST" style="display:inline;" onsubmit="confirmDelete(event)">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</body>
+</html>
