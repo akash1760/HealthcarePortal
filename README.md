@@ -3,7 +3,8 @@
 <br/>
 
 <h4>Main Page</h4>
-![image](https://github.com/user-attachments/assets/0d1ab8ee-e5cf-4443-aafb-51267ca93112)
+<img src="https://github.com/user-attachments/assets/0d1ab8ee-e5cf-4443-aafb-51267ca93112"/>
+
 <h4>Patient Registration Page</h4>
 ![image](https://github.com/user-attachments/assets/517504a5-4c80-4599-88b8-53651cb076f4)
 <h4>Appointment Booking Page</h4>
